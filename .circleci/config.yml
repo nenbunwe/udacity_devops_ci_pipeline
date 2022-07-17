@@ -31,6 +31,15 @@ jobs:
           keys:
             - "npm-packages"
       - run: npm audit
+  fix:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - "npm-packages"
+      - run: npm audit fix
 
 workflows:
   my_workflow:
@@ -42,3 +51,7 @@ workflows:
       - analyze:
           requires:
             - test
+      - fix:
+          requires:
+            - analyze
+
