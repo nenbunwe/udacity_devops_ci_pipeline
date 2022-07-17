@@ -11,6 +11,7 @@ jobs:
           key: "npm-packages"
           paths:
             - /src/node_modules
+      - run: npm install --save-dev
       - run: npm run lint
   test:
     docker:
