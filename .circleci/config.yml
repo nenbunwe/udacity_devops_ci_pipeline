@@ -6,12 +6,12 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - run: npm install --save-dev
       - run: npm i
       - save_cache:
           key: "npm-packages"
           paths:
             - /src/node_modules
-      - run: npm install --save-dev
       - run: npm run lint
   test:
     docker:
